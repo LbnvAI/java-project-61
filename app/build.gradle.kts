@@ -1,9 +1,19 @@
 plugins {
     id("java")
+    application
+}
+
+application {
+    mainClass = "hexlet.code.App"
+    tasks.withType<Jar> {
+        manifest {
+            attributes["Main-Class"] = mainClass
+        }
+    }
 }
 
 group = "hexlet.code"
-version = "1.0-SNAPSHOT"
+version = "1"
 
 repositories {
     mavenCentral()
