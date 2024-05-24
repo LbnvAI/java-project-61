@@ -1,10 +1,8 @@
 package hexlet.code.games;
 
-import static hexlet.code.Engine.getRounds;
 import static hexlet.code.Engine.greetings;
-import static hexlet.code.Engine.getGamerAnswer;
-import static hexlet.code.Engine.doIfWrongAnswer;
-import static hexlet.code.Engine.getGamerName;
+import static hexlet.code.Engine.runGame;
+import static hexlet.code.Engine.setCorrectAnswer;
 
 public class Progression implements Runnable {
 
@@ -12,39 +10,14 @@ public class Progression implements Runnable {
     public void run() {
         greetings();
         System.out.println("What number is missing in the progression?");
-        progressionGame();
-    }
-
-    // Progression game code
-    private void progressionGame() {
-        while (true) {
-            System.out.print(generateTask());
-            String gamerAnswer = getGamerAnswer();
-
-            // Check gamer answer
-            if (gamerAnswer.equals(correctAnswer)) {
-                System.out.println("Correct!");
-                correctAnswersCounter++;
-            } else {
-                doIfWrongAnswer(gamerAnswer, correctAnswer);
-                // End game
-                break;
-            }
-
-            // In case of 3 correct answers you win and stop game
-            if (correctAnswersCounter == getRounds()) {
-                System.out.println("Congratulations, " + getGamerName() + "!");
-                break;
-            }
-        }
+        runGame();
     }
 
     // Generate random task for gamer
-    private String generateTask() {
+    public static String generateTask() {
         int hidePosition = (int) (Math.random() * 11);
         int[] progression = generateProgression();
-        correctAnswer = Integer.toString(progression[hidePosition]);
-
+        setCorrectAnswer(Integer.toString(progression[hidePosition]));
         StringBuilder task = new StringBuilder("Question: ");
         for (int i = 0; i < hidePosition; i++) {
             task.append(progression[i]).append(" ");
@@ -59,8 +32,8 @@ public class Progression implements Runnable {
 
     // Generate random arithmetic progression
     // With random first element and random step
-    private int[] generateProgression() {
-        int step = (int) (Math.random() * 30);
+    private static int[] generateProgression() {
+        int step = 1 + (int) (Math.random() * 30);
         int firstElement = (int) (Math.random() * 30);
         int[] result = new int[10];
         result[0] = firstElement;
@@ -69,7 +42,4 @@ public class Progression implements Runnable {
         }
         return result;
     }
-
-    private int correctAnswersCounter = 0;
-    private String correctAnswer = "";
 }

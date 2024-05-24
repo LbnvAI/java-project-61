@@ -28,58 +28,83 @@ public class Engine {
         Scanner scan = new Scanner(System.in);
         System.out.print("May I have your name? ");
         gamerName = scan.nextLine();
-        System.out.println("Hello, " + getGamerName() + "!");
+        System.out.println("Hello, " + gamerName + "!");
     }
 
-    // Create and run different games depending on the player's choice
+    // Create and run different games depending on the player's mainMenuChoice
     public static void runGameByChoice() {
         Scanner scan = new Scanner(System.in);
-        String choice = scan.nextLine();
+        mainMenuChoice = scan.nextLine();
         System.out.println();
+        // Create a Runnable object to store the created class of any
+        // Game in it since every game class implements Runnable
         Runnable game = null;
-        if (choice.equals("1")) {
-            greetings();
-        }
-        if (choice.equals("2")) {
-            game = new Even();
-        }
-        if (choice.equals("3")) {
-            game = new Calc();
-        }
-        if (choice.equals("4")) {
-            game = new GCD();
-        }
-        if (choice.equals("5")) {
-            game = new Progression();
-        }
-        if (choice.equals("6")) {
-            game = new Prime();
+        switch (mainMenuChoice) {
+            case "1" -> greetings();
+            case "2" -> game = new Even();
+            case "3" -> game = new Calc();
+            case "4" -> game = new GCD();
+            case "5" -> game = new Progression();
+            case "6" -> game = new Prime();
         }
         if (game != null) {
             game.run();
         }
     }
 
+    // Perform main functionality of any game:
+    //  Create and print tasks
+    //  Start and finish game
+    //  Check answers
+    //  Print special messages
+    public static void runGame() {
+        for (int i = 0; i < ROUNDS; i++) {
+            printGeneratedTask(mainMenuChoice);
+            String gamerAnswer = getGamerAnswer();
+
+            // Check gamer answer
+            if (gamerAnswer.equals(correctAnswer)) {
+                System.out.println("Correct!");
+            } else {
+                doIfWrongAnswer(gamerAnswer, correctAnswer);
+                // End game
+                return;
+            }
+        }
+        System.out.println("Congratulations, " + gamerName + "!");
+    }
+
+    // Generate random task depending on the player's mainMenuChoice
+    private static void printGeneratedTask(String mainMenuChoice) {
+        switch (mainMenuChoice) {
+            case "2" -> System.out.print(Even.generateTask());
+            case "3" -> System.out.print(Calc.generateTask());
+            case "4" -> System.out.print(GCD.generateTask());
+            case "5" -> System.out.print(Progression.generateTask());
+            case "6" -> System.out.print(Prime.generateTask());
+        }
+    }
+
     // Allow user to make input
-    public static String getGamerAnswer() {
+    private static String getGamerAnswer() {
         Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
+    // Print special message when gamer answer was wrong
     public static void doIfWrongAnswer(String gamerAnswer, String correctAnswer) {
         System.out.print("'" + gamerAnswer + "'" + " is wrong answer ;(. ");
         System.out.println("Correct answer was " + "'" + correctAnswer + "'.");
-        System.out.println("Let's try again, " + getGamerName() + "!");
+        System.out.println("Let's try again, " + gamerName + "!");
     }
 
+    // Game parameters
+    private static String mainMenuChoice;
     private static String gamerName;
     private static final int ROUNDS = 3;
+    private static String correctAnswer;
 
-    public static int getRounds() {
-        return ROUNDS;
-    }
-
-    public static String getGamerName() {
-        return gamerName;
+    public static void setCorrectAnswer(String value) {
+        correctAnswer = value;
     }
 }
