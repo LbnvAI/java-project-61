@@ -18,7 +18,7 @@ public class GCD implements Runnable {
     // GCD game code
     private void gcdGame() {
         while (true) {
-            System.out.print(generateRandomNumbers());
+            System.out.print(generateTask());
             String gamerAnswer = getGamerAnswer();
 
             // Check gamer answer
@@ -40,7 +40,7 @@ public class GCD implements Runnable {
     }
 
     // Generate random task for gamer
-    private String generateRandomNumbers() {
+    private String generateTask() {
         int firstNumber = (int) (Math.random() * 30);
         int secondNumber = (int) (Math.random() * 30);
         // Fix the division by zero

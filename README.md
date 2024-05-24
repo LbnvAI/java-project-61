@@ -13,3 +13,7 @@
 #### Screenshot of working game "GCD"
 
 ![Screenshot of working game "GCD"](https://github.com/LbnvAI/java-project-61/blob/main/screenshots/gcd.jpg)
+
+#### Screenshot of working game "GCD"
+
+![Screenshot of working game "Progression"](https://github.com/LbnvAI/java-project-61/blob/main/screenshots/progression.jpg)

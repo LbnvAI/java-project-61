@@ -21,7 +21,7 @@ public class Calc implements Runnable {
     // Calc game code
     private void calcGame() {
         while (true) {
-            System.out.print(generateRandomExpression());
+            System.out.print(generateTask());
             String gamerAnswer = getGamerAnswer();
 
             // Check gamer answer
@@ -43,7 +43,7 @@ public class Calc implements Runnable {
     }
 
     // Generate random task for gamer
-    private String generateRandomExpression() {
+    private String generateTask() {
         int firstNumber = (int) (Math.random() * 20);
         int secondNumber = (int) (Math.random() * 20);
         char sign = ' ';
