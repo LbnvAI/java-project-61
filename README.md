@@ -14,6 +14,10 @@
 
 ![Screenshot of working game "GCD"](https://github.com/LbnvAI/java-project-61/blob/main/screenshots/gcd.jpg)
 
-#### Screenshot of working game "GCD"
+#### Screenshot of working game "Progression"
 
 ![Screenshot of working game "Progression"](https://github.com/LbnvAI/java-project-61/blob/main/screenshots/progression.jpg)
+
+#### Screenshot of working game "Prime"
+
+![Screenshot of working game "Prime"](https://github.com/LbnvAI/java-project-61/blob/main/screenshots/prime.jpg)

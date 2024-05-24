@@ -50,7 +50,7 @@ public class Progression implements Runnable {
             task.append(progression[i]).append(" ");
         }
         task.append(".. ");
-        for (int i = hidePosition+1; i < progression.length; i++) {
+        for (int i = hidePosition + 1; i < progression.length; i++) {
             task.append(progression[i]).append(" ");
         }
         task.append("\nYour answer: ");
