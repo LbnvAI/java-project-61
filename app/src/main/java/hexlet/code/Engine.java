@@ -1,9 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.games.Even;
+
 import java.util.Scanner;
 
 
-public class MainMenu {
+public class Engine {
 
     // Print list of games and keys to choose
     public static void printMenu() {
@@ -33,7 +35,7 @@ public class MainMenu {
             greetings();
         }
         if (choice.equals("2")) {
-            game = new OddEven();
+            game = new Even();
         }
         if (game != null) {
             game.run();
@@ -41,6 +43,11 @@ public class MainMenu {
     }
 
     private static String gamerName;
+    private static final int roundCount = 3;
+
+    public static int getRoundCount() {
+        return roundCount;
+    }
 
     public static String getGamerName() {
         return gamerName;

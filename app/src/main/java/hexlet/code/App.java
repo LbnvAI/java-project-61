@@ -1,7 +1,7 @@
 package hexlet.code;
 
-import static hexlet.code.MainMenu.printMenu;
-import static hexlet.code.MainMenu.runGameByChoice;
+import static hexlet.code.Engine.printMenu;
+import static hexlet.code.Engine.runGameByChoice;
 
 
 public class App {

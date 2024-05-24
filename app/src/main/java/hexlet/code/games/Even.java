@@ -1,13 +1,14 @@
-package hexlet.code;
+package hexlet.code.games;
 
 import java.util.Scanner;
 
-import static hexlet.code.MainMenu.getGamerName;
-import static hexlet.code.MainMenu.greetings;
+import static hexlet.code.Engine.getRoundCount;
+import static hexlet.code.Engine.greetings;
+import static hexlet.code.Engine.getGamerName;
 
 // Class for game in which your task is
 // Guess the even or odd number shown on the screen
-public class OddEven implements Runnable {
+public class Even implements Runnable {
 
     // Use to run OddEven-game in start menu
     public void run() {
@@ -53,7 +54,7 @@ public class OddEven implements Runnable {
                 break;
             }
             // In case of 3 correct answers you win and stop game
-            if (correctAnswersCounter == 3) {
+            if (correctAnswersCounter == getRoundCount()) {
                 System.out.println("Congratulations, " + getGamerName() + "!");
                 break;
             }
