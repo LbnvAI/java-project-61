@@ -12,11 +12,11 @@ public class GCD implements Runnable {
     public void run() {
         greetings();
         System.out.println("Find the greatest common divisor of given numbers.");
-        calcGame();
+        gcdGame();
     }
 
     // GCD game code
-    private void calcGame() {
+    private void gcdGame() {
         while (true) {
             System.out.print(generateRandomNumbers());
             String gamerAnswer = getGamerAnswer();
