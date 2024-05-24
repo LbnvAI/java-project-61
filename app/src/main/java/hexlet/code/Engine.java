@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import hexlet.code.games.Even;
-
 import java.util.Scanner;
 
 
@@ -42,11 +41,17 @@ public class Engine {
         }
     }
 
-    private static String gamerName;
-    private static final int roundCount = 3;
+    // Allow user to make input
+    public static String getGamerAnswer() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
 
-    public static int getRoundCount() {
-        return roundCount;
+    private static String gamerName;
+    private static final int ROUNDS = 3;
+
+    public static int getRounds() {
+        return ROUNDS;
     }
 
     public static String getGamerName() {

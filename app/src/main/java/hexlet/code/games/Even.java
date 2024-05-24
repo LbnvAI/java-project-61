@@ -1,10 +1,9 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
-
-import static hexlet.code.Engine.getRoundCount;
-import static hexlet.code.Engine.greetings;
+import static hexlet.code.Engine.getRounds;
 import static hexlet.code.Engine.getGamerName;
+import static hexlet.code.Engine.greetings;
+import static hexlet.code.Engine.getGamerAnswer;
 
 // Class for game in which your task is
 // Guess the even or odd number shown on the screen
@@ -17,47 +16,61 @@ public class Even implements Runnable {
         oddEvenGame();
     }
 
+    private boolean checkGamerAnswer(String answer, int number) {
+        if (number % 2 == 0) {
+            correctAnswer = "yes";
+        } else {
+            correctAnswer = "no";
+        }
+        return answer.equals(correctAnswer);
+    }
+
     // OddEven-game
     // 3 correct answers = you win
     // 1 wrong answer = you loose
     private void oddEvenGame() {
 
-        int correctAnswersCounter = 0;
         while (true) {
 
             // Generate pseudorandom number in bound 0-99
             int randomNumber = 1 + (int) (Math.random() * 100);
 
-            // Create variables to simplify checks
-            String correctAnswer;
-            if (randomNumber % 2 == 0) {
-                correctAnswer = "yes";
-            } else {
-                correctAnswer = "no";
-            }
-
             // Print questions and get gamer answers
             System.out.println("Question: " + randomNumber);
             System.out.print("Your answer: ");
-            Scanner scan = new Scanner(System.in);
-            String gamerAnswer = scan.nextLine();
+            gamerAnswer = getGamerAnswer();
 
             // Check gamer answer
-            if (gamerAnswer.equals(correctAnswer)) {
-                System.out.println("Correct!");
-                correctAnswersCounter++;
+            boolean check = checkGamerAnswer(gamerAnswer, randomNumber);
+            if (check) {
+                doIfCorrect();
             } else {
-                // In case of 1 wrong answer you loose and stop game
-                System.out.println("'" + gamerAnswer + "'"
-                        + " is wrong answer ;(. Correct answer was " + "'" + correctAnswer + "'.");
-                System.out.println("Let's try again, " + getGamerName() + "!");
+                doIfWrong();
                 break;
             }
+
             // In case of 3 correct answers you win and stop game
-            if (correctAnswersCounter == getRoundCount()) {
+            if (correctAnswersCounter == getRounds()) {
                 System.out.println("Congratulations, " + getGamerName() + "!");
                 break;
             }
         }
     }
+
+    // If answer is correct inc counter and print message and finish game
+    private void doIfCorrect() {
+        System.out.println("Correct!");
+        correctAnswersCounter++;
+    }
+
+    // If answer is wrong print message
+    private void doIfWrong() {
+        System.out.println("'" + gamerAnswer + "'"
+                + " is wrong answer ;(. Correct answer was " + "'" + correctAnswer + "'.");
+        System.out.println("Let's try again, " + getGamerName() + "!");
+    }
+
+    private String gamerAnswer;
+    private int correctAnswersCounter = 0;
+    private String correctAnswer;
 }
