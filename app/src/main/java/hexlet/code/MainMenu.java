@@ -23,21 +23,21 @@ public class MainMenu {
         System.out.println("Hello, " + getGamerName() + "!");
     }
 
-    // Returns the key selected by the player
-    private static String getChoice() {
+    // Create and run different games depending on the player's choice
+    public static void runGameByChoice() {
         Scanner scan = new Scanner(System.in);
         String choice = scan.nextLine();
         System.out.println();
-        return choice;
-    }
-
-    // Create and run different games depending on the player's choice
-    public static void runGameByChoice() {
-        String choice = getChoice();
         Runnable game = null;
-        if (choice.equals("1")) greetings();
-        if (choice.equals("2")) game = new OddEven();
-        if (game != null) game.run();
+        if (choice.equals("1")) {
+            greetings();
+        }
+        if (choice.equals("2")) {
+            game = new OddEven();
+        }
+        if (game != null) {
+            game.run();
+        }
     }
 
     private static String gamerName;

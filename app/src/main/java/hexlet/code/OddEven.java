@@ -29,8 +29,11 @@ public class OddEven implements Runnable {
 
             // Create variables to simplify checks
             String correctAnswer;
-            if (randomNumber % 2 == 0) correctAnswer = "yes";
-            else correctAnswer = "no";
+            if (randomNumber % 2 == 0) {
+                correctAnswer = "yes";
+            } else {
+                correctAnswer = "no";
+            }
 
             // Print questions and get gamer answers
             System.out.println("Question: " + randomNumber);
@@ -44,7 +47,8 @@ public class OddEven implements Runnable {
                 correctAnswersCounter++;
             } else {
                 // In case of 1 wrong answer you loose and stop game
-                System.out.println("'" + gamerAnswer + "'" + " is wrong answer ;(. Correct answer was " + "'" + correctAnswer + "'.");
+                System.out.println("'" + gamerAnswer + "'"
+                        + " is wrong answer ;(. Correct answer was " + "'" + correctAnswer + "'.");
                 System.out.println("Let's try again, " + getGamerName() + "!");
                 break;
             }
