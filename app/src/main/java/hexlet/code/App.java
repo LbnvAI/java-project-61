@@ -1,10 +1,10 @@
 package hexlet.code;
 
-import static hexlet.code.Cli.greetings;
+import static hexlet.code.MainMenu.*;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Welcome to the Brain Games!");
-        greetings();
+        printMenu();
+        runGameByChoice();
     }
 }
