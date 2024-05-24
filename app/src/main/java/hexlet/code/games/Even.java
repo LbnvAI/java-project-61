@@ -13,14 +13,13 @@ public class Even implements Runnable {
     public void run() {
         greetings();
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-        oddEvenGame();
+        evenGame();
     }
 
     // OddEven-game
     // 3 correct answers = you win
     // 1 wrong answer = you loose
-    private void oddEvenGame() {
-
+    private void evenGame() {
         while (true) {
 
             // Generate pseudorandom number in bound 0-99
