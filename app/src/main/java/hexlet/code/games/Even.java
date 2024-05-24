@@ -16,15 +16,6 @@ public class Even implements Runnable {
         oddEvenGame();
     }
 
-    private boolean checkGamerAnswer(String answer, int number) {
-        if (number % 2 == 0) {
-            correctAnswer = "yes";
-        } else {
-            correctAnswer = "no";
-        }
-        return answer.equals(correctAnswer);
-    }
-
     // OddEven-game
     // 3 correct answers = you win
     // 1 wrong answer = you loose
@@ -68,6 +59,15 @@ public class Even implements Runnable {
         System.out.println("'" + gamerAnswer + "'"
                 + " is wrong answer ;(. Correct answer was " + "'" + correctAnswer + "'.");
         System.out.println("Let's try again, " + getGamerName() + "!");
+    }
+
+    private boolean checkGamerAnswer(String answer, int number) {
+        if (number % 2 == 0) {
+            correctAnswer = "yes";
+        } else {
+            correctAnswer = "no";
+        }
+        return answer.equals(correctAnswer);
     }
 
     private String gamerAnswer;
