@@ -1,27 +1,24 @@
 package hexlet.code.games;
 
 import static hexlet.code.Engine.greetings;
+import static hexlet.code.Engine.getGamerName;
 import static hexlet.code.Engine.getGamerAnswer;
 import static hexlet.code.Engine.doIfWrongAnswer;
 import static hexlet.code.Engine.getRounds;
-import static hexlet.code.Engine.getGamerName;
 
-// This game create random expression using two numbers and signs "+ - *"
-// Gamer task is guess the correct answer 3 times
-// If gamer make 1 mistake the game is over
-public class Calc implements Runnable {
+public class GCD implements Runnable {
 
     // Use is to run game from engine
     public void run() {
         greetings();
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
+        System.out.println("Find the greatest common divisor of given numbers.");
         calcGame();
     }
 
-    // Calc game code
+    // GCD game code
     private void calcGame() {
         while (true) {
-            System.out.print(generateRandomExpression());
+            System.out.print(generateRandomNumbers());
             String gamerAnswer = getGamerAnswer();
 
             // Check gamer answer
@@ -43,25 +40,21 @@ public class Calc implements Runnable {
     }
 
     // Generate random task for gamer
-    private String generateRandomExpression() {
-        int firstNumber = (int) (Math.random() * 20);
-        int secondNumber = (int) (Math.random() * 20);
-        char sign = ' ';
-        int rand = (int) (Math.random() * 3);
-        if (rand == 0) {
-            sign = '+';
-            correctAnswer = Integer.toString(firstNumber + secondNumber);
+    private String generateRandomNumbers() {
+        int firstNumber = (int) (Math.random() * 30);
+        int secondNumber = (int) (Math.random() * 30);
+        // Fix the division by zero
+        if (secondNumber == 0) {
+            secondNumber = 1;
         }
-        if (rand == 1) {
-            sign = '-';
-            correctAnswer = Integer.toString(firstNumber - secondNumber);
-        }
-        if (rand == 2) {
-            sign = '*';
-            correctAnswer = Integer.toString(firstNumber * secondNumber);
-        }
-        return "Question: " + firstNumber + " " + sign + " " + secondNumber
+        correctAnswer = Integer.toString(getGCD(firstNumber, secondNumber));
+        return "Question: " + firstNumber + " " + secondNumber
                 + "\nYour answer: ";
+    }
+
+    // Finds GCD of two numbers
+    private int getGCD(int a, int b) {
+        return (a % b == 0) ? Math.abs(b) : getGCD(b, a % b);
     }
 
     private int correctAnswersCounter = 0;
