@@ -36,29 +36,23 @@ public class Engine {
         Scanner scan = new Scanner(System.in);
         mainMenuChoice = scan.nextLine();
         System.out.println();
-        // Create a Runnable object to store the created class of any
-        // Game in it since every game class implements Runnable
-        Runnable game = null;
         if (mainMenuChoice.equals("1")) {
             greetings();
         }
         if (mainMenuChoice.equals("2")) {
-            game = new Even();
+            Even.run();
         }
         if (mainMenuChoice.equals("3")) {
-            game = new Calc();
+            Calc.run();
         }
         if (mainMenuChoice.equals("4")) {
-            game = new GCD();
+            GCD.run();
         }
         if (mainMenuChoice.equals("5")) {
-            game = new Progression();
+            Progression.run();
         }
         if (mainMenuChoice.equals("6")) {
-            game = new Prime();
-        }
-        if (game != null) {
-            game.run();
+            Prime.run();
         }
     }
 

@@ -7,10 +7,10 @@ import static hexlet.code.Engine.setCorrectAnswer;
 // This game create random expression using two numbers and signs "+ - *"
 // Gamer task is guess the correct answer 3 times
 // If gamer make 1 mistake the game is over
-public class Calc implements Runnable {
+public class Calc {
 
     // Use is to run game from engine
-    public void run() {
+    public static void run() {
         greetings();
         System.out.println("What is the result of the expression?");
         runGame();
@@ -18,10 +18,13 @@ public class Calc implements Runnable {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int firstNumber = (int) (Math.random() * 20);
-        int secondNumber = (int) (Math.random() * 20);
+        int firstNumberMaxValue = 20;
+        int secondNumberMaxValue = 20;
+        int signRandomValue = 3;
+        int firstNumber = (int) (Math.random() * firstNumberMaxValue);
+        int secondNumber = (int) (Math.random() * secondNumberMaxValue);
         char sign = ' ';
-        int rand = (int) (Math.random() * 3);
+        int rand = (int) (Math.random() * signRandomValue);
         if (rand == 0) {
             sign = '+';
             setCorrectAnswer(Integer.toString(firstNumber + secondNumber));

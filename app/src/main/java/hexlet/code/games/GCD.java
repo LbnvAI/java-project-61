@@ -4,10 +4,10 @@ import static hexlet.code.Engine.greetings;
 import static hexlet.code.Engine.runGame;
 import static hexlet.code.Engine.setCorrectAnswer;
 
-public class GCD implements Runnable {
+public class GCD {
 
     // Use is to run game from engine
-    public void run() {
+    public static void run() {
         greetings();
         System.out.println("Find the greatest common divisor of given numbers.");
         runGame();
@@ -15,8 +15,10 @@ public class GCD implements Runnable {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int firstNumber = (int) (Math.random() * 30);
-        int secondNumber = (int) (Math.random() * 30);
+        int firstNumberMaxValue = 30;
+        int secondNumberMaxValue = 30;
+        int firstNumber = (int) (Math.random() * firstNumberMaxValue);
+        int secondNumber = (int) (Math.random() * secondNumberMaxValue);
         // Fix the division by zero
         if (secondNumber == 0) {
             secondNumber = 1;
