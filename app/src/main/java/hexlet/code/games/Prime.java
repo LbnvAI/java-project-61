@@ -23,6 +23,9 @@ public class Prime {
         } else {
             setCorrectAnswer("no");
         }
+        if (number == 0 || number == 1) {
+            setCorrectAnswer("no");
+        }
         return "Question: " + number + "\nYour answer: ";
     }
 
