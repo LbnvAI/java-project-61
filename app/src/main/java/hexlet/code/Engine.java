@@ -39,13 +39,23 @@ public class Engine {
         // Create a Runnable object to store the created class of any
         // Game in it since every game class implements Runnable
         Runnable game = null;
-        switch (mainMenuChoice) {
-            case "1" -> greetings();
-            case "2" -> game = new Even();
-            case "3" -> game = new Calc();
-            case "4" -> game = new GCD();
-            case "5" -> game = new Progression();
-            case "6" -> game = new Prime();
+        if (mainMenuChoice.equals("1")) {
+            greetings();
+        }
+        if (mainMenuChoice.equals("2")) {
+            game = new Even();
+        }
+        if (mainMenuChoice.equals("3")) {
+            game = new Calc();
+        }
+        if (mainMenuChoice.equals("4")) {
+            game = new GCD();
+        }
+        if (mainMenuChoice.equals("5")) {
+            game = new Progression();
+        }
+        if (mainMenuChoice.equals("6")) {
+            game = new Prime();
         }
         if (game != null) {
             game.run();
@@ -59,14 +69,14 @@ public class Engine {
     //  Print special messages
     public static void runGame() {
         for (int i = 0; i < ROUNDS; i++) {
-            printGeneratedTask(mainMenuChoice);
+            printGeneratedTask();
             String gamerAnswer = getGamerAnswer();
 
             // Check gamer answer
             if (gamerAnswer.equals(correctAnswer)) {
                 System.out.println("Correct!");
             } else {
-                doIfWrongAnswer(gamerAnswer, correctAnswer);
+                doIfWrongAnswer(gamerAnswer);
                 // End game
                 return;
             }
@@ -75,13 +85,15 @@ public class Engine {
     }
 
     // Generate random task depending on the player's mainMenuChoice
-    private static void printGeneratedTask(String mainMenuChoice) {
+    private static void printGeneratedTask() {
         switch (mainMenuChoice) {
             case "2" -> System.out.print(Even.generateTask());
             case "3" -> System.out.print(Calc.generateTask());
             case "4" -> System.out.print(GCD.generateTask());
             case "5" -> System.out.print(Progression.generateTask());
             case "6" -> System.out.print(Prime.generateTask());
+            default -> {
+            }
         }
     }
 
@@ -92,7 +104,7 @@ public class Engine {
     }
 
     // Print special message when gamer answer was wrong
-    public static void doIfWrongAnswer(String gamerAnswer, String correctAnswer) {
+    public static void doIfWrongAnswer(String gamerAnswer) {
         System.out.print("'" + gamerAnswer + "'" + " is wrong answer ;(. ");
         System.out.println("Correct answer was " + "'" + correctAnswer + "'.");
         System.out.println("Let's try again, " + gamerName + "!");
