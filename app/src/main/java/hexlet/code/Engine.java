@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Engine {
 
-    // Print list of games and keys to choose
     public static void printMenu() {
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
@@ -22,7 +21,6 @@ public class Engine {
         System.out.print("Your choice: ");
     }
 
-    // Print greeting message, ask gamer name and save it
     public static void greetings() {
         System.out.println("Welcome to the Brain Games!");
         Scanner scan = new Scanner(System.in);
@@ -31,86 +29,66 @@ public class Engine {
         System.out.println("Hello, " + gamerName + "!");
     }
 
-    // Create and run different games depending on the player's mainMenuChoice
     public static void runGameByChoice() {
         Scanner scan = new Scanner(System.in);
         mainMenuChoice = scan.nextLine();
         System.out.println();
-        if (mainMenuChoice.equals("1")) {
-            greetings();
-        }
-        if (mainMenuChoice.equals("2")) {
-            Even.run();
-        }
-        if (mainMenuChoice.equals("3")) {
-            Calc.run();
-        }
-        if (mainMenuChoice.equals("4")) {
-            GCD.run();
-        }
-        if (mainMenuChoice.equals("5")) {
-            Progression.run();
-        }
-        if (mainMenuChoice.equals("6")) {
-            Prime.run();
-        }
-    }
-
-    // Perform main functionality of any game:
-    //  Create and print tasks
-    //  Start and finish game
-    //  Check answers
-    //  Print special messages
-    public static void runGame() {
-        for (int i = 0; i < ROUNDS; i++) {
-            printGeneratedTask();
-            String gamerAnswer = getGamerAnswer();
-
-            // Check gamer answer
-            if (gamerAnswer.equals(correctAnswer)) {
-                System.out.println("Correct!");
-            } else {
-                doIfWrongAnswer(gamerAnswer);
-                // End game
-                return;
-            }
-        }
-        System.out.println("Congratulations, " + gamerName + "!");
-    }
-
-    // Generate random task depending on the player's mainMenuChoice
-    private static void printGeneratedTask() {
         switch (mainMenuChoice) {
-            case "2" -> System.out.print(Even.generateTask());
-            case "3" -> System.out.print(Calc.generateTask());
-            case "4" -> System.out.print(GCD.generateTask());
-            case "5" -> System.out.print(Progression.generateTask());
-            case "6" -> System.out.print(Prime.generateTask());
+            case "1" -> greetings();
+            case "2", "3", "4", "5", "6", "0" -> {
+                greetings();
+                runGame();
+            }
             default -> {
             }
         }
     }
 
-    // Allow user to make input
-    private static String getGamerAnswer() {
-        Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+    private static void runGame() {
+        Round round = new Round();
+        for (int roundNumber = 0; roundNumber < ROUNDS; roundNumber++) {
+            configureRound(round, roundNumber);
+            if (round.run().equals("fail")) {
+                break;
+            }
+        }
     }
 
-    // Print special message when gamer answer was wrong
-    public static void doIfWrongAnswer(String gamerAnswer) {
-        System.out.print("'" + gamerAnswer + "'" + " is wrong answer ;(. ");
-        System.out.println("Correct answer was " + "'" + correctAnswer + "'.");
-        System.out.println("Let's try again, " + gamerName + "!");
+    private static void configureRound(Round round, int roundNumber) {
+        round.setRoundNumber(roundNumber);
+        round.setGamerName(gamerName);
+        switch (mainMenuChoice) {
+            case "2" -> {
+                round.setTaskDescription(Even.getTaskDescription());
+                round.setRoundTask(Even.generateTask());
+                round.setCorrectAnswer(Even.getCorrectAnswer());
+            }
+            case "3" -> {
+                round.setTaskDescription(Calc.getTaskDescription());
+                round.setRoundTask(Calc.generateTask());
+                round.setCorrectAnswer(Calc.getCorrectAnswer());
+            }
+            case "4" -> {
+                round.setTaskDescription(GCD.getTaskDescription());
+                round.setRoundTask(GCD.generateTask());
+                round.setCorrectAnswer(GCD.getCorrectAnswer());
+            }
+            case "5" -> {
+                round.setTaskDescription(Progression.getTaskDescription());
+                round.setRoundTask(Progression.generateTask());
+                round.setCorrectAnswer(Progression.getCorrectAnswer());
+            }
+            case "6" -> {
+                round.setTaskDescription(Prime.getTaskDescription());
+                round.setRoundTask(Prime.generateTask());
+                round.setCorrectAnswer(Prime.getCorrectAnswer());
+            }
+            default -> {
+            }
+        }
     }
 
-    // Game parameters
     private static String mainMenuChoice;
     private static String gamerName;
     private static final int ROUNDS = 3;
-    private static String correctAnswer;
-
-    public static void setCorrectAnswer(String value) {
-        correctAnswer = value;
-    }
 }
