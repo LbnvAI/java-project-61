@@ -12,7 +12,7 @@ public class Calc implements Runnable {
     // Use is to run game from engine
     public void run() {
         greetings();
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
+        System.out.println("What is the result of the expression?");
         runGame();
     }
 
