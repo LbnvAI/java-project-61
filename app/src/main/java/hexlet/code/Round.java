@@ -2,7 +2,7 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-public class Round {
+public final class Round {
 
     private String correctAnswer;
     private String roundTask;
@@ -42,23 +42,23 @@ public class Round {
         return scan.nextLine();
     }
 
-    public void setRoundNumber(int roundNumber) {
-        this.roundNumber = roundNumber;
+    public void setRoundNumber(int roundNumberValue) {
+        this.roundNumber = roundNumberValue;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setTaskDescription(String taskDescriptionValue) {
+        this.taskDescription = taskDescriptionValue;
     }
 
-    public void setRoundTask(String roundTask) {
-        this.roundTask = roundTask;
+    public void setRoundTask(String roundTaskValue) {
+        this.roundTask = roundTaskValue;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCorrectAnswer(String correctAnswerValue) {
+        this.correctAnswer = correctAnswerValue;
     }
 
-    public void setGamerName(String gamerName) {
-        this.gamerName = gamerName;
+    public void setGamerName(String nameValue) {
+        this.gamerName = nameValue;
     }
 }
