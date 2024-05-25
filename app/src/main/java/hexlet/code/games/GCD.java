@@ -15,10 +15,8 @@ public class GCD {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int firstNumberMaxValue = 30;
-        int secondNumberMaxValue = 30;
-        int firstNumber = (int) (Math.random() * firstNumberMaxValue);
-        int secondNumber = (int) (Math.random() * secondNumberMaxValue);
+        int firstNumber = (int) (Math.random() * FIRST_NUMBER_MAX_VALUE);
+        int secondNumber = (int) (Math.random() * SECOND_NUMBER_MAX_VALUE);
         // Fix the division by zero
         if (secondNumber == 0) {
             secondNumber = 1;
@@ -32,4 +30,7 @@ public class GCD {
     private static int getGCD(int a, int b) {
         return (a % b == 0) ? Math.abs(b) : getGCD(b, a % b);
     }
+
+    private static final int FIRST_NUMBER_MAX_VALUE = 30;
+    private static final int SECOND_NUMBER_MAX_VALUE = 30;
 }
