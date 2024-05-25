@@ -15,16 +15,16 @@ public class Progression implements Runnable {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int hidePosition = (int) (Math.random() * 11);
+        int hidePosition = (int) (Math.random() * 10);
         int[] progression = generateProgression();
         setCorrectAnswer(Integer.toString(progression[hidePosition]));
         StringBuilder task = new StringBuilder("Question: ");
-        for (int i = 0; i < hidePosition; i++) {
-            task.append(progression[i]).append(" ");
-        }
-        task.append(".. ");
-        for (int i = hidePosition + 1; i < progression.length; i++) {
-            task.append(progression[i]).append(" ");
+        for (int i = 0; i < progression.length; i++) {
+            if (i == hidePosition) {
+                task.append(".. ");
+            } else {
+                task.append(progression[i]).append(" ");
+            }
         }
         task.append("\nYour answer: ");
         return task.toString();
@@ -33,8 +33,8 @@ public class Progression implements Runnable {
     // Generate random arithmetic progression
     // With random first element and random step
     private static int[] generateProgression() {
-        int step = 1 + (int) (Math.random() * 30);
-        int firstElement = (int) (Math.random() * 30);
+        int step = 1 + (int) (Math.random() * 31);
+        int firstElement = (int) (Math.random() * 31);
         int[] result = new int[10];
         result[0] = firstElement;
         for (int i = 1; i < 10; i++) {
