@@ -16,8 +16,7 @@ public class Prime {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int maxNumberValue = 101;
-        int number = (int) (Math.random() * maxNumberValue);
+        int number = (int) (Math.random() * MAX_NUMBER_VALUE);
         BigInteger temp = BigInteger.valueOf(number);
         if (temp.isProbablePrime((int) Math.log(number))) {
             setCorrectAnswer("yes");
@@ -26,4 +25,6 @@ public class Prime {
         }
         return "Question: " + number + "\nYour answer: ";
     }
+
+    private static final int MAX_NUMBER_VALUE = 101;
 }

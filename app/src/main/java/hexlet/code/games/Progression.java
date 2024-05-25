@@ -33,10 +33,8 @@ public class Progression {
     // Generate random arithmetic progression
     // With random first element and random step
     private static int[] generateProgression() {
-        int progressionMaxStepSize = 31;
-        int progFirstElementMaxValue = 31;
-        int step = 1 + (int) (Math.random() * progressionMaxStepSize);
-        int firstElement = (int) (Math.random() * progFirstElementMaxValue);
+        int step = 1 + (int) (Math.random() * PROG_STEP_MAX_VALUE);
+        int firstElement = (int) (Math.random() * PROG_FIRST_ELEMENT_MAX_VALUE);
         int[] result = new int[PROGRESSION_LENGTH];
         result[0] = firstElement;
         for (int i = 1; i < PROGRESSION_LENGTH; i++) {
@@ -46,4 +44,6 @@ public class Progression {
     }
 
     private static final int PROGRESSION_LENGTH = 10;
+    private static final int PROG_STEP_MAX_VALUE = 31;
+    private static final int PROG_FIRST_ELEMENT_MAX_VALUE = 31;
 }

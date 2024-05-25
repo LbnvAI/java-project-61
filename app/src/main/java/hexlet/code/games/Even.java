@@ -17,8 +17,7 @@ public class Even {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int maxValue = 100;
-        int number = (int) (Math.random() * maxValue);
+        int number = (int) (Math.random() * MAX_NUMBER_VALUE);
         if (number % 2 == 0) {
             setCorrectAnswer("yes");
         } else {
@@ -26,4 +25,6 @@ public class Even {
         }
         return "Question: " + number + "\nYour answer: ";
     }
+
+    private static final int MAX_NUMBER_VALUE = 100;
 }

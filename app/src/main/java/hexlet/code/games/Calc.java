@@ -18,13 +18,10 @@ public class Calc {
 
     // Generate random task for gamer
     public static String generateTask() {
-        int firstNumberMaxValue = 20;
-        int secondNumberMaxValue = 20;
-        int signRandomValue = 3;
-        int firstNumber = (int) (Math.random() * firstNumberMaxValue);
-        int secondNumber = (int) (Math.random() * secondNumberMaxValue);
+        int firstNumber = (int) (Math.random() * FIRST_NUMBER_MAX_VALUE);
+        int secondNumber = (int) (Math.random() * SECOND_NUMBER_MAX_VALUE);
         char sign = ' ';
-        int rand = (int) (Math.random() * signRandomValue);
+        int rand = (int) (Math.random() * SIGN_MAX_VALUE);
         if (rand == 0) {
             sign = '+';
             setCorrectAnswer(Integer.toString(firstNumber + secondNumber));
@@ -40,4 +37,8 @@ public class Calc {
         return "Question: " + firstNumber + " " + sign + " " + secondNumber
                 + "\nYour answer: ";
     }
+
+    private static final int FIRST_NUMBER_MAX_VALUE = 20;
+    private static final int SECOND_NUMBER_MAX_VALUE = 20;
+    private static final int SIGN_MAX_VALUE = 3;
 }
