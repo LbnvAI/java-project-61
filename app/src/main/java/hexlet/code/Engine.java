@@ -9,18 +9,6 @@ import java.util.Scanner;
 
 public class Engine {
 
-    public static void printMenu() {
-        System.out.println("Please enter the game number and press Enter.");
-        System.out.println("1 - Greet");
-        System.out.println("2 - Even");
-        System.out.println("3 - Calc");
-        System.out.println("4 - GCD");
-        System.out.println("5 - Progression");
-        System.out.println("6 - Prime");
-        System.out.println("0 - Exit");
-        System.out.print("Your choice: ");
-    }
-
     public static void greetings() {
         System.out.println("Welcome to the Brain Games!");
         Scanner scan = new Scanner(System.in);
@@ -29,66 +17,93 @@ public class Engine {
         System.out.println("Hello, " + gamerName + "!");
     }
 
-    public static void runGameByChoice() {
-        Scanner scan = new Scanner(System.in);
-        mainMenuChoice = scan.nextLine();
-        System.out.println();
-        switch (mainMenuChoice) {
-            case "1" -> greetings();
-            case "2", "3", "4", "5", "6", "0" -> {
-                greetings();
-                runGame();
-            }
-            default -> {
-            }
-        }
-    }
 
-    private static void runGame() {
-        Round round = new Round();
-        for (int roundNumber = 0; roundNumber < ROUNDS; roundNumber++) {
-            configureRound(round, roundNumber);
-            if (round.run().equals("fail")) {
+    public static void runGame() {
+        greetings();
+        for (int i = 0; i < ROUNDS; i++) {
+            configureRound();
+            if (runRound(i).equals("fail")) {
                 break;
             }
         }
     }
 
-    private static void configureRound(Round round, int roundNumber) {
-        round.setRoundNumber(roundNumber);
-        round.setGamerName(gamerName);
+    public static void configureRound() {
         switch (mainMenuChoice) {
             case "2" -> {
-                round.setTaskDescription(Even.getTaskDescription());
-                round.setRoundTask(Even.generateTask());
-                round.setCorrectAnswer(Even.getCorrectAnswer());
+                taskDescription = Even.getTaskDescription();
+                roundTask = Even.generateTask();
+                correctAnswer = Even.getCorrectAnswer();
             }
             case "3" -> {
-                round.setTaskDescription(Calc.getTaskDescription());
-                round.setRoundTask(Calc.generateTask());
-                round.setCorrectAnswer(Calc.getCorrectAnswer());
+                taskDescription = Calc.getTaskDescription();
+                roundTask = Calc.generateTask();
+                correctAnswer = Calc.getCorrectAnswer();
             }
             case "4" -> {
-                round.setTaskDescription(GCD.getTaskDescription());
-                round.setRoundTask(GCD.generateTask());
-                round.setCorrectAnswer(GCD.getCorrectAnswer());
+                taskDescription = GCD.getTaskDescription();
+                roundTask = GCD.generateTask();
+                correctAnswer = GCD.getCorrectAnswer();
             }
             case "5" -> {
-                round.setTaskDescription(Progression.getTaskDescription());
-                round.setRoundTask(Progression.generateTask());
-                round.setCorrectAnswer(Progression.getCorrectAnswer());
+                taskDescription = Progression.getTaskDescription();
+                roundTask = Progression.generateTask();
+                correctAnswer = Progression.getCorrectAnswer();
             }
             case "6" -> {
-                round.setTaskDescription(Prime.getTaskDescription());
-                round.setRoundTask(Prime.generateTask());
-                round.setCorrectAnswer(Prime.getCorrectAnswer());
+                taskDescription = Prime.getTaskDescription();
+                roundTask = Prime.generateTask();
+                correctAnswer = Prime.getCorrectAnswer();
             }
             default -> {
             }
         }
     }
 
+    public static String runRound(int roundNumber) {
+        if (roundNumber == 0) {
+            System.out.println(taskDescription);
+        }
+        System.out.print(roundTask);
+        String gamerAnswer = getGamerAnswer();
+
+        if (gamerAnswer.equals(correctAnswer)) {
+            System.out.println("Correct!");
+        } else {
+            doIfWrongAnswer(gamerAnswer);
+            return "fail";
+        }
+        if (roundNumber == 2) {
+            System.out.println("Congratulations, " + gamerName + "!");
+        }
+        return "success";
+    }
+
+    private static void doIfWrongAnswer(String gamerAnswer) {
+        System.out.print("'" + gamerAnswer + "'" + " is wrong answer ;(. ");
+        System.out.println("Correct answer was " + "'" + correctAnswer + "'.");
+        System.out.println("Let's try again, " + gamerName + "!");
+
+
+    }
+
+    private static String getGamerAnswer() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
+
+    public static void setMainMenuChoice(String mainMenuChoiceValue) {
+        Engine.mainMenuChoice = mainMenuChoiceValue;
+    }
+
+    public static String getMainMenuChoice() {
+        return mainMenuChoice;
+    }
+
     private static String mainMenuChoice;
+    private static String correctAnswer;
+    private static String roundTask;
+    private static String taskDescription;
     private static String gamerName;
     private static final int ROUNDS = 3;
 }
