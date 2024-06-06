@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Engine {
 
+    private static String gamerName;
+    public static final int ROUNDS = 3;
+
     public static void greetings() {
         System.out.println("Welcome to the Brain Games!");
         Scanner scan = new Scanner(System.in);
@@ -28,11 +31,8 @@ public class Engine {
                 break;
             }
             if (i == ROUNDS - 1) {
-                System.out.println("Congratulations, " + gamerName);
+                System.out.println("Congratulations, " + gamerName + "!");
             }
         }
     }
-
-    private static String gamerName;
-    public static final int ROUNDS = 3;
 }
