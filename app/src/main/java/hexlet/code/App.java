@@ -1,5 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.games.Even;
+import hexlet.code.games.Calc;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Progression;
+import hexlet.code.games.Prime;
+
 import java.util.Scanner;
 
 public class App {
@@ -22,12 +28,16 @@ public class App {
 
     public static void runGameByChoice() {
         Scanner scan = new Scanner(System.in);
-        Engine.setMainMenuChoice(scan.nextLine());
-        System.out.println();
-        if (Engine.getMainMenuChoice().equals("1")) {
-            Engine.greetings();
-        } else if (!Engine.getMainMenuChoice().equals("0")) {
-            Engine.runGame();
+        String answer = scan.nextLine();
+        switch (answer) {
+            case "1" -> Engine.greetings();
+            case "2" -> Even.run();
+            case "3" -> Calc.run();
+            case "4" -> GCD.run();
+            case "5" -> Progression.run();
+            case "6" -> Prime.run();
+            default -> {
+            }
         }
     }
 }

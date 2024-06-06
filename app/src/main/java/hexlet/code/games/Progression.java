@@ -1,21 +1,38 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 public class Progression {
 
-    public static String generateTask() {
-        int hidePosition = (int) (Math.random() * PROGRESSION_LENGTH);
-        int[] progression = generateProgression();
-        correctAnswer = Integer.toString(progression[hidePosition]);
-        StringBuilder task = new StringBuilder("Question: ");
-        for (int i = 0; i < PROGRESSION_LENGTH; i++) {
-            if (i == hidePosition) {
-                task.append(".. ");
-            } else {
-                task.append(progression[i]).append(" ");
+    private static final int PROGRESSION_LENGTH = 10;
+    private static final int PROG_STEP_MAX_VALUE = 31;
+    private static final int PROG_FIRST_ELEMENT_MAX_VALUE = 31;
+
+    public static void run() {
+        System.out.println("What number is missing in the progression?");
+        Engine.runGame(generateGameData());
+    }
+
+    public static String[][] generateGameData() {
+        String[][] gameData = new String[Engine.ROUNDS][2];
+        for (int i = 0; i < Engine.ROUNDS; i++) {
+            String[] roundData = new String[2];
+            int hidePosition = (int) (Math.random() * PROGRESSION_LENGTH);
+            int[] progression = generateProgression();
+            roundData[1] = Integer.toString(progression[hidePosition]);
+            StringBuilder task = new StringBuilder("Question: ");
+            for (int j = 0; j < PROGRESSION_LENGTH; j++) {
+                if (j == hidePosition) {
+                    task.append(".. ");
+                } else {
+                    task.append(progression[j]).append(" ");
+                }
             }
+            task.append("\nYour answer: ");
+            roundData[0] = task.toString();
+            gameData[i] = roundData;
         }
-        task.append("\nYour answer: ");
-        return task.toString();
+        return gameData;
     }
 
     private static int[] generateProgression() {
@@ -28,19 +45,4 @@ public class Progression {
         }
         return result;
     }
-
-    public static String getTaskDescription() {
-        return TASK_DESCRIPTION;
-    }
-
-    public static String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    private static final String TASK_DESCRIPTION =
-            "What number is missing in the progression?";
-    private static String correctAnswer;
-    private static final int PROGRESSION_LENGTH = 10;
-    private static final int PROG_STEP_MAX_VALUE = 31;
-    private static final int PROG_FIRST_ELEMENT_MAX_VALUE = 31;
 }
