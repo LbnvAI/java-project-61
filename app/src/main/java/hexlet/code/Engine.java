@@ -15,12 +15,13 @@ public class Engine {
         System.out.println("Hello, " + gamerName + "!");
     }
 
-    public static void runGame(String[][] gameData) {
+    public static void runGame(String[][] gameData, String gameRule) {
         greetings();
         Scanner scan = new Scanner(System.in);
         String gamerAnswer;
+        System.out.println(gameRule);
         for (int i = 0; i < ROUNDS; i++) {
-            System.out.print(gameData[i][0]);
+            System.out.print("Question: " + gameData[i][0] + "\nYour answer: ");
             gamerAnswer = scan.nextLine();
             if (gamerAnswer.equals(gameData[i][1])) {
                 System.out.println("Correct!");

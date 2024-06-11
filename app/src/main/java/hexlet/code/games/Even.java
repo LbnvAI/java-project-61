@@ -4,11 +4,11 @@ import hexlet.code.Engine;
 
 public class Even {
 
+    private static final String GAME_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     private static final int MAX_NUMBER_VALUE = 100;
 
     public static void run() {
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-        Engine.runGame(generateGameData());
+        Engine.runGame(generateGameData(), GAME_RULE);
     }
 
     public static String[][] generateGameData() {
@@ -21,7 +21,7 @@ public class Even {
             } else {
                 roundData[1] = "no";
             }
-            roundData[0] = "Question: " + number + "\nYour answer: ";
+            roundData[0] = Integer.toString(number);
             gameData[i] = roundData;
         }
         return gameData;

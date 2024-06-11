@@ -4,12 +4,12 @@ import hexlet.code.Engine;
 
 public class GCD {
 
+    private static final String GAME_RULE = "Find the greatest common divisor of given numbers.";
     private static final int FIRST_NUMBER_MAX_VALUE = 30;
     private static final int SECOND_NUMBER_MAX_VALUE = 30;
 
     public static void run() {
-        System.out.println("Find the greatest common divisor of given numbers.");
-        Engine.runGame(generateGameData());
+        Engine.runGame(generateGameData(), GAME_RULE);
     }
 
     public static String[][] generateGameData() {
@@ -23,8 +23,7 @@ public class GCD {
                 secondNumber = 1;
             }
             roundData[1] = Integer.toString(getGCD(firstNumber, secondNumber));
-            roundData[0] = "Question: " + firstNumber + " " + secondNumber
-                    + "\nYour answer: ";
+            roundData[0] = firstNumber + " " + secondNumber;
             gameData[i] = roundData;
         }
         return gameData;

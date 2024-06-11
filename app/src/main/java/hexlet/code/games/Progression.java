@@ -4,13 +4,13 @@ import hexlet.code.Engine;
 
 public class Progression {
 
+    private static final String GAME_RULE = "What number is missing in the progression?";
     private static final int PROGRESSION_LENGTH = 10;
     private static final int PROG_STEP_MAX_VALUE = 31;
     private static final int PROG_FIRST_ELEMENT_MAX_VALUE = 31;
 
     public static void run() {
-        System.out.println("What number is missing in the progression?");
-        Engine.runGame(generateGameData());
+        Engine.runGame(generateGameData(), GAME_RULE);
     }
 
     public static String[][] generateGameData() {
@@ -20,7 +20,7 @@ public class Progression {
             int hidePosition = (int) (Math.random() * PROGRESSION_LENGTH);
             int[] progression = generateProgression();
             roundData[1] = Integer.toString(progression[hidePosition]);
-            StringBuilder task = new StringBuilder("Question: ");
+            StringBuilder task = new StringBuilder();
             for (int j = 0; j < PROGRESSION_LENGTH; j++) {
                 if (j == hidePosition) {
                     task.append(".. ");
@@ -28,7 +28,6 @@ public class Progression {
                     task.append(progression[j]).append(" ");
                 }
             }
-            task.append("\nYour answer: ");
             roundData[0] = task.toString();
             gameData[i] = roundData;
         }

@@ -5,11 +5,11 @@ import java.math.BigInteger;
 
 public class Prime {
 
+    private static final String GAME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private static final int MAX_NUMBER_VALUE = 101;
 
     public static void run() {
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        Engine.runGame(generateGameData());
+        Engine.runGame(generateGameData(), GAME_RULE);
     }
 
     public static String[][] generateGameData() {
@@ -26,7 +26,7 @@ public class Prime {
             if (number == 0 || number == 1) {
                 roundData[1] = "no";
             }
-            roundData[0] = "Question: " + number + "\nYour answer: ";
+            roundData[0] = Integer.toString(number);
             gameData[i] = roundData;
         }
         return gameData;
